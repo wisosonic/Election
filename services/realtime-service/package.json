@@ -1,0 +1,19 @@
+{
+  "name": "@election/realtime-service",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "start": "node dist/main.js",
+    "test": "jest"
+  },
+  "dependencies": {
+    "@election/auth": "0.1.0",
+    "@election/pubsub": "0.1.0",
+    "@election/shared-types": "0.1.0",
+    "socket.io": "^4.8.1"
+  },
+  "devDependencies": {
+    "socket.io-client": "^4.8.1"
+  }
+}

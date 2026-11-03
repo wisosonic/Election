@@ -1,0 +1,26 @@
+{
+  "name": "@election/identity-service",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "start": "node dist/main.js",
+    "test": "cross-env NODE_OPTIONS=--experimental-vm-modules jest"
+  },
+  "dependencies": {
+    "@election/auth": "0.1.0",
+    "@election/db": "0.1.0",
+    "@nestjs/common": "^10.4.15",
+    "@nestjs/core": "^10.4.15",
+    "@nestjs/platform-express": "^10.4.15",
+    "bcryptjs": "^2.4.3",
+    "otplib": "^12.0.1",
+    "reflect-metadata": "^0.2.2",
+    "rxjs": "^7.8.1"
+  },
+  "devDependencies": {
+    "@nestjs/testing": "^10.4.15",
+    "@types/bcryptjs": "^2.4.6",
+    "@types/express": "^5.0.0"
+  }
+}

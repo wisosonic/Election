@@ -1,0 +1,38 @@
+# Real local dev, for whenever Docker is available on the machine (it wasn't
+# in the environment this was originally built in -- see packages/db's use of
+# PGlite and mqtt-ingestion's embedded Aedes broker for the no-Docker path
+# used by `npm test` everywhere in this repo).
+#
+# Point DATABASE_URL at this Postgres instead of PGlite for a persistent local
+# dev database:
+#   DATABASE_URL=postgres://election:election@localhost:5432/election
+#
+# NOTE: mqtt-ingestion currently always embeds its own broker (AedesBrokerAdapter)
+# rather than connecting out to an external one -- there's no Mosquitto/IoT-Core
+# client adapter yet, so a standalone broker container isn't included here. That
+# adapter is a known follow-up (see docs/ARCHITECTURE.md §5.1) for whenever
+# mqtt-ingestion needs to run against a broker it doesn't itself host.
+services:
+  postgres:
+    image: postgres:16
+    environment:
+      POSTGRES_USER: election
+      POSTGRES_PASSWORD: election
+      POSTGRES_DB: election
+    ports:
+      - '5432:5432'
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U election']
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  redis:
+    image: redis:7
+    ports:
+      - '6379:6379'
+
+volumes:
+  postgres-data:

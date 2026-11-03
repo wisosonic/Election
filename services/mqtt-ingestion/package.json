@@ -1,0 +1,22 @@
+{
+  "name": "@election/mqtt-ingestion",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "start": "node dist/main.js",
+    "test": "cross-env NODE_OPTIONS=--experimental-vm-modules jest"
+  },
+  "dependencies": {
+    "@election/auth": "0.1.0",
+    "@election/db": "0.1.0",
+    "@election/mqtt-broker": "0.1.0",
+    "@election/pubsub": "0.1.0",
+    "@election/queue": "0.1.0",
+    "@election/shared-types": "0.1.0",
+    "drizzle-orm": "^0.36.4"
+  },
+  "devDependencies": {
+    "mqtt": "^5.10.3"
+  }
+}
